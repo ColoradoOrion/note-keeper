@@ -1,0 +1,3 @@
+#define TITLE_LENGTH 20
+#define CONTENT_LENTGH 255
+#define PATH_LENGTH 100
