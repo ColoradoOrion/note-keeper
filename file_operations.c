@@ -27,6 +27,7 @@ void create(struct Note *note)
 void delete (struct Note *note)
 {
     char title[TITLE_LENGTH];
+    title[0] = '\0';
 
     char path[PATH_LENGTH];
     generateNotePath("CREATE", title, path);
@@ -85,9 +86,9 @@ void append(struct Note *note)
         int newContentLength = strlen(newContent);
         int oldContentLength = strlen(note->content);
 
-        if(newContentLength + oldContentLength + 1 > CONTENT_LENTGH){
+      /*   if(newContentLength + oldContentLength + 1 > CONTENT_LENTGH){
             strcspn()
-        }
+        } */
 
         char path[PATH_LENGTH];
         generateNotePath("APPEND", note->title, path);
