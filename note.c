@@ -13,12 +13,15 @@ void clearNote(struct Note *note)
 void generateNotePath(char *operation, char title[], char path[])
 {
 
-    printf("%s - Enter a note Title: ", operation);
+    if (title[0] == '\0')
+    {
+        printf("%s - Enter a note Title: ", operation);
 
-    fgets(title, TITLE_LENGTH, stdin);
-    removeNewLine(title);
+        fgets(title, TITLE_LENGTH, stdin);
+        removeNewLine(title);
+    }
 
-    snprintf(path, PATH_LENGTH, "./%s.txt", title);
+    snprintf(path, PATH_LENGTH, "db/%s.txt", title);
 }
 
 void removeNewLine(char value[])

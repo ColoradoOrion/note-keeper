@@ -2,6 +2,7 @@
 #include "note.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
 void create(struct Note *note)
 {
@@ -19,6 +20,8 @@ void create(struct Note *note)
     fputs("\n", filePointer);
     fputs(note->content, filePointer);
     fclose(filePointer);
+
+    note->isValid = true;
 }
 
 void delete (struct Note *note)
@@ -39,7 +42,7 @@ void delete (struct Note *note)
     }
 }
 
-void read(struct Note *note)
+void read(struct Note *note, bool displayWhenActive)
 {
     clearNote(note);
 
@@ -54,9 +57,51 @@ void read(struct Note *note)
 
         fgets(note->content, sizeof(note->content), filePointer);
         fclose(filePointer);
+        note->isValid = true;
+
+        if (displayWhenActive)
+        {
+            printf("Active note is now \"%s\"\n", note->title);
+            printf("Content:\n%s\n", note->content);
+        }
     }
     else
     {
-        printf("No note with title \"%s\" exists", note->title);
+        printf("No note with title \"%s\" exists. No active note.\n", note->title);
+        clearNote(note);
+    }
+}
+
+void append(struct Note *note)
+{
+    read(note, false);
+    if (note->isValid)
+    {
+        printf("APPEND - Add content to note: ");
+        char newContent[CONTENT_LENTGH];
+        fgets(newContent, CONTENT_LENTGH, stdin);
+        removeNewLine(newContent);
+
+        int newContentLength = strlen(newContent);
+        int oldContentLength = strlen(note->content);
+
+        if(newContentLength + oldContentLength + 1 > CONTENT_LENTGH){
+            strcspn()
+        }
+
+        char path[PATH_LENGTH];
+        generateNotePath("APPEND", note->title, path);
+        FILE *filePointer = fopen(path, "a");
+        if (filePointer)
+        {
+            fputs(" ", filePointer);
+            fputs(newContent, filePointer);
+            fclose(filePointer);
+        }
+        else
+        {
+            printf("%s not found for appending", path);
+            clearNote(note);
+        }
     }
 }
