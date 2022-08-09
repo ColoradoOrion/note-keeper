@@ -5,4 +5,4 @@ include_directories(include)
 file(GLOB SOURCES "src/*.c")
 add_executable(note-keeper ${SOURCES})
 
-#install(TARGETS note-keeper DESTINATION bin)
+install(TARGETS note-keeper DESTINATION bin)
