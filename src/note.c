@@ -1,7 +1,7 @@
 #include "note.h"
 #include <string.h>
 #include <stdio.h>
-#include "file_operations.h"
+#include "../include/file_operations.h"
 
 void clearNote(struct Note *note)
 {
@@ -21,7 +21,7 @@ void generateNotePath(char *operation, char title[], char path[])
         removeNewLine(title);
     }
 
-    snprintf(path, PATH_LENGTH, "db/%s.txt", title);
+    snprintf(path, PATH_LENGTH, "%s.txt", title);
 }
 
 void removeNewLine(char value[])

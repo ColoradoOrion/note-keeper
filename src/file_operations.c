@@ -1,5 +1,5 @@
-#include "const.h"
-#include "note.h"
+#include "../include/file_operations.h"
+#include "../include/note.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>

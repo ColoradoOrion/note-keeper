@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "note.h"
-#include "file_operations.h"
+#include "../include/note.h"
+#include "../include/file_operations.h"
 
 void printBanner()
 {
